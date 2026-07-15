@@ -34,21 +34,31 @@ Known Issues:
 
 
 <script>
-        var allergy_count = 0;
-        var cold_count = 0;
+var allergy_count = 0;
+var cold_count = 0;
+
+function allergyAdd(){
+    allergy_count = allergy_count + 1;
+    alert("allergy_count is " + allergy_count + "\ncold_count is " + cold_count);
+}
+
+function coldAdd(){
+    cold_count = cold_count + 1;
+    alert("allergy_count is " + allergy_count + "\ncold_count is " + cold_count);
+}
+
+function calculateResults(){
+    var total = allergy_count + cold_count;
+    
+
+    var allergyPercent = Math.round((allergy_count / total) * 100) + "%";
+    var coldPercent = Math.round((cold_count / total) * 100) + "%";
 
 
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-		alert(allergy_count);
-        }
-
-        function coldAdd(){
-            cold_count = cold_count + 1;
-        }
-
-  </script>
-
+    document.getElementById("allergy-result").textContent = allergyPercent;
+    document.getElementById("cold-result").textContent = coldPercent;
+}
+</script>
 
 
 <style>	
@@ -74,7 +84,7 @@ Known Issues:
 
 <body>
 <div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies!?</h1>
+     <h1>Cold or Allergies!?</h1>
 </div>
 	
 <div id="content" class="w3-container">
@@ -92,9 +102,11 @@ Known Issues:
 		<h1>Question 1</h1>
 	</div>
 	
-    	<div id="content" class="w3-container">
-        <p>Put Question 1 content here.</p>    
-    	</div>
+    <div id="content" class="w3-container">
+        <p>Are your eyes watery or itchy?</p>
+        <a href="#two" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#two" onclick="coldAdd()" class="w3-btn w3-grey w3-round"> No </a>
+    </div>
 </div>
 
 <div class="page" id="two">
@@ -103,9 +115,76 @@ Known Issues:
 	</div>
 	
 	<div id="content" class="w3-container">
-		<p>Content of page 2 goes here.</p>
+		<p>Do you have a fever?</p>
+        <a href="#three" onclick="coldAdd()()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#three" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> No </a>
 	</div>
 </div>	
+
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Do you have a sore throat?</p>
+        <a href="#four" onclick="coldAdd()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#four" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> No </a>	
+</div>
+
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Are your symptoms seasonal or chronic?</p>
+        <a href="#five" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#five" onclick="coldAdd()" class="w3-btn w3-grey w3-round"> No </a>		
+</div>	
+
+<div class="page" id="five">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 5</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Do you have skin rashes?</p>
+        <a href="#six" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#six" onclick="coldAdd()" class="w3-btn w3-grey w3-round"> No </a>		
+</div>	
+<div class="page" id="six">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 6</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Do you have a stuffy nose?</p>
+        <a href="#seven" onclick="coldAdd()" class="w3-btn w3-grey w3-round"> Yes </a>
+        <a href="#seven" onclick="allergyAdd()" class="w3-btn w3-grey w3-round"> No </a>		
+</div>	
+
+<div class="page" id="seven">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 7</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p>Click below for results!</p>
+        <!-- Added onclick to run the math -->
+        <a href="#eight" onclick="calculateResults()" class="w3-btn w3-grey w3-round"> Click here for results! </a>
+    </div>
+</div>
+
+<div class="page" id="eight">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Results</h1>
+    </div>
+    <div id="content" class="w3-container">
+        
+        <p>Probability it is allergy: <span id="allergy-result"> </span> </p>
+        <p>Probability it is a cold: <span id="cold-result"> </span> </p>
+</div>
+       	
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
